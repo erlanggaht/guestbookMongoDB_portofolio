@@ -11,8 +11,6 @@ class GeustBookControllers {
 
         res.cookie('expired','active',{
             path : '/',
-            secure : true,
-            httpOnly : false,
             maxAge : 60000,
         })
 
