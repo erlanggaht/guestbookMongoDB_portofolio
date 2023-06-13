@@ -1,5 +1,7 @@
 import guestbook from "../models/user.mjs"
 
+
+
 class GeustBookControllers {
     
     static async create (req,res) {
@@ -9,22 +11,17 @@ class GeustBookControllers {
             limitComment : req.body.limitComment
         }
 
-        res.cookie('expired','active',{
-            path : '/',
-            maxAge : 60000,
-        })
-
-        // res.json({cookies : req.cookies})
-        
+              
         // Validasi Limit
        const dataByName = await guestbook.findOne({name : req.body.name})
         if(dataByName) { 
+
+
             const getLimitComment = dataByName.limitComment
             if(getLimitComment === 5) {
                 return res.json('sorry comments are limited to 5 comments :)')
             }
             
-            // Reset LimitComment Berdasarkan Jam
         } 
 
 
