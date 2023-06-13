@@ -1,11 +1,17 @@
-export async function setCookie (req,res,next)  {
+import express from 'express'
+import session from 'express-session'
 
-    res.cookie('limit','1',{
-        maxAge : 60000,
-        httpOnly : true,
-        secure : false
-    })
+const app = express()
+export function setCookie (req,res,next)  {
 
+  app.set('trust proxy', 1) // trust first proxy
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false,sameSite:'none' }
+  }))
+  console.log('okehhhh')
     next()
 
 }

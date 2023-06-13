@@ -6,7 +6,7 @@ import router from './router/users.js'
 import cors from 'cors'
 import cookieParser from "cookie-parser";
 
-const app = express()
+export const app = express()
 const port = 8000
 
 // Cookie Parser
