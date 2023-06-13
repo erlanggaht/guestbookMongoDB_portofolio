@@ -3,12 +3,10 @@ import  mongoose  from "mongoose";
 const Schema = mongoose.Schema;
 
 const mongoSchema = new Schema({
-    expireAt: {
-        type: Date,
-    },
     name : {
         type : String,
         required : true,
+        
     },
     pesan : {
         type : String,
@@ -18,9 +16,9 @@ const mongoSchema = new Schema({
     limitComment : {
         type : Number,
         min : 1,
-        max : 5
-        
-    }
+        max : 5        
+    },
+   
 })
 
 mongoSchema.index ({ expireAt: 1 }, { expireAfterSeconds: 0 })

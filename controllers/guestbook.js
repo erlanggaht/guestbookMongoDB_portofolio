@@ -1,25 +1,26 @@
 import guestbook from "../models/user.mjs"
+import {LocalStorage} from 'node-localstorage' 
 
 
 
 class GeustBookControllers {
     
     static async create (req,res) {
+    // setLocalStorage limitComment\
+    const LimitCookies = req.get('headerCookies')
         const newData = {
             name : req.body.name,
             pesan : req.body.pesan,
-            limitComment : req.body.limitComment
+            limitComment : req.body.limitComment,
         }
 
-              
+    
         // Validasi Limit
-       const dataByName = await guestbook.findOne({name : req.body.name})
+        const dataByName = await guestbook.findOne({name : req.body.name})
         if(dataByName) { 
-
-
             const getLimitComment = dataByName.limitComment
             if(getLimitComment === 5) {
-                return res.json('sorry comments are limited to 5 comments :)')
+                 res.status(400).json('sorry comments are limited to 5 comments :)')
             }
             
         } 
@@ -29,9 +30,10 @@ class GeustBookControllers {
        if(dataByName) {
          await guestbook.create(newData)
          await guestbook.updateMany({name : dataByName.name},{
-            limitComment : dataByName.limitComment + 1
-         }).then(() => {
-            res.status(200)
+            limitComment :  parseInt(LimitCookies) + 1
+         }).then( () => {
+            res.status(200).json('Thanks For Comment')
+        
          })
          
        } else {
