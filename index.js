@@ -12,7 +12,7 @@ const port = process.env.PORT
 // Cookie Parser
 app.use(cookieParser())
 // Body parser
-app.use(cors())
+app.use(cors({credentials:true}))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 // MongoDb Connect
