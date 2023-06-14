@@ -14,7 +14,7 @@
     ],
     "headers": [
         {
-          "source": "/api/(.*)",
+          "source": "https://guestbook-mongo-db-portofolio.vercel.app/api/create",
           "headers": [
             { "key": "Access-Control-Allow-Credentials", "value": "true" },
             { "key": "Access-Control-Allow-Origin", "value": "*" },
