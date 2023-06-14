@@ -20,17 +20,17 @@ class GeustBookControllers {
         if(dataByName) { 
             const getLimitComment = dataByName.limitComment
             if(getLimitComment === 5) {
-                 res.status(400).json('sorry comments are limited to 5 comments :)')
+                 return res.status(400).json(`sorry ${req.body.name} comments are limited to 5 comments :)`)
             }
             
         } 
-
+        
 
     //   Validasi Create And Update
        if(dataByName) {
          await guestbook.create(newData)
          await guestbook.updateMany({name : dataByName.name},{
-            limitComment :  parseInt(LimitCookies) + 1
+            limitComment : parseInt(LimitCookies) + 1
          }).then( () => {
             res.status(200).json('Thanks For Comment')
         
